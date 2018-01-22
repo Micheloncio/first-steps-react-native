@@ -1,33 +1,57 @@
 import React from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+
+class FirstComponent extends React.Component{
+  static navigationOptions = {
+    title: 'First Component'
+  };
+  render(){
+    const { navigate } = this.props.navigation;
+    return(
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={{width: 100, height: 100,  backgroundColor: 'powderblue'}} />
+          <View style={{width: 350, height: 100, backgroundColor: 'skyblue'}} >
+            <Button onPress={()=>navigate('SecondScreen')} title='Change screen'/>
+          </View>
+          <View style={{width: 100, height: 100, backgroundColor: 'steelblue'}} />
+          <View style={{width: 100, height: 100,  backgroundColor: 'powderblue'}} />
+          <View style={{width: 100, height: 100, backgroundColor: 'steelblue'}} />
+          <View style={{width: 100, height: 100,  backgroundColor: 'powderblue'}} />
+          <View style={{width: 100, height: 100, backgroundColor: 'steelblue'}} />
+          <View style={{width: 100, height: 100,  backgroundColor: 'powderblue'}} />
+        </View>
+      </ScrollView>
+    );
+  }
+}
+
+class SecondComponent extends React.Component{
+  static navigationOptions = {
+    title: 'Second Component'
+  };
+  render(){
+    return <Text> This is my second screen </Text>;
+  }
+}
+
+const SimpleApp = StackNavigator({
+  Home: { screen: FirstComponent },
+  SecondScreen: { screen: SecondComponent },
+});
 
 export default class App extends React.Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <View style={{width: 100, height: 100,  backgroundColor: 'powderblue'}} />
-        <View style={{width: 350, height: 100, backgroundColor: 'skyblue'}} >
-          <TextInput
-          style={{height: 100, fontSize: 30,}}
-          placeholder="Type here to translate!"
-          />
-        </View>
-        <View style={{width: 100, height: 100, backgroundColor: 'steelblue'}} />
-      </View>
-    );
+    return <SimpleApp />;
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
+    backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'space-around',
-    backgroundColor: 'black',
-  },
-  text: {
-    color: 'black',
-    fontSize: 30,
-  },
+    justifyContent: 'center'
+  }
 });
