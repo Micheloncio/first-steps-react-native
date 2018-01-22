@@ -1,18 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{flex: 1, flexDirection: 'row',backgroundColor: 'powderblue'}}>
-          <View style={{flex: 1, backgroundColor: 'black'}} />
-          <View style={{flex: 1, backgroundColor: 'white'}} />
+        <View style={{width: 100, height: 100,  backgroundColor: 'powderblue'}} />
+        <View style={{width: 350, height: 100, backgroundColor: 'skyblue'}} >
+          <TextInput
+          style={{height: 100, fontSize: 30,}}
+          placeholder="Type here to translate!"
+          />
         </View>
-        <View style={{flex: 2, backgroundColor: 'skyblue'}} >
-          <Text style={styles.text}>Hello World!!</Text>
-        </View>
-        <View style={{flex: 3, backgroundColor: 'steelblue'}} />
+        <View style={{width: 100, height: 100, backgroundColor: 'steelblue'}} />
       </View>
     );
   }
@@ -21,11 +21,13 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#759B84',
-    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    backgroundColor: 'black',
   },
   text: {
-    color: 'white',
+    color: 'black',
     fontSize: 30,
   },
 });
