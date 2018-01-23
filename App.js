@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, TabNavigator } from 'react-navigation';
 
-class FirstComponent extends React.Component{
+class MainComponent extends React.Component{
   static navigationOptions = {
     title: 'First Component'
   };
@@ -13,7 +13,7 @@ class FirstComponent extends React.Component{
         <View style={styles.container}>
           <View style={{width: 100, height: 100,  backgroundColor: 'powderblue'}} />
           <View style={{width: 350, height: 100, backgroundColor: 'skyblue'}} >
-            <Button onPress={()=>navigate('SecondScreen')} title='Change screen'/>
+            <Button onPress={()=>navigate('Second')} title='Change screen'/>
           </View>
           <View style={{width: 100, height: 100, backgroundColor: 'steelblue'}} />
           <View style={{width: 100, height: 100,  backgroundColor: 'powderblue'}} />
@@ -27,7 +27,7 @@ class FirstComponent extends React.Component{
   }
 }
 
-class SecondComponent extends React.Component{
+class SecondMainComponent extends React.Component{
   static navigationOptions = {
     title: 'Second Component'
   };
@@ -36,14 +36,41 @@ class SecondComponent extends React.Component{
   }
 }
 
+class HomeScreen extends React.Component{
+  static navigationOptions = {
+    title: 'Home'
+  };
+  render(){
+    return <Text> Welcome </Text>;
+  }
+}
+class MainScreen extends React.Component{
+  static navigationOptions = {
+    title: 'Main'
+  };
+  render(){
+    return <SimpleApp />
+  }
+}
+
+const MainScreenNavigator = TabNavigator({
+  Home: { screen: HomeScreen },
+  All: { screen: MainScreen },
+});
+
 const SimpleApp = StackNavigator({
-  Home: { screen: FirstComponent },
-  SecondScreen: { screen: SecondComponent },
+  First: { screen: MainComponent },
+  Second: { screen: SecondMainComponent },
 });
 
 export default class App extends React.Component {
   render() {
-    return <SimpleApp />;
+    return(
+      <View style={{flex: 1}}>
+        <View style={{height:24}}/>
+        <MainScreenNavigator />
+      </View>
+     );
   }
 }
 
